@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>EduTech - Login</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <header class="navbar">
+      <a href="index.html" class="logo"> Edu<span>Tech</span> </a>
+
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="nav-buttons">
+        <a href="register.html" class="btn-primary"> Register </a>
+      </div>
+    </header>
+
+    <section class="auth-section">
+      <div class="auth-container">
+        <div class="auth-header">
+          <span class="section-label"> Welcome Back </span>
+
+          <h1>Login to <span>EduTech</span></h1>
+
+          <p>Continue your learning journey.</p>
+        </div>
+
+        <form id="loginForm" class="auth-form">
+          <div class="form-group">
+            <label for="loginUsernameInput"> Username </label>
+
+            <input
+              type="text"
+              id="loginUsernameInput"
+              placeholder="Enter your username"
+            />
+
+            <small id="loginUsernameError"></small>
+          </div>
+
+          <div class="form-group">
+            <label for="loginPasswordInput"> Password </label>
+
+            <input
+              type="password"
+              id="loginPasswordInput"
+              placeholder="Enter your password"
+            />
+
+            <small id="loginPasswordError"></small>
+          </div>
+
+          <button type="submit" class="btn-primary auth-button">Login</button>
+
+          <p id="loginMessage" class="form-message"></p>
+
+          <p class="auth-switch">
+            Don't have an account?
+            <a href="register.html">Register</a>
+          </p>
+        </form>
+      </div>
+    </section>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>

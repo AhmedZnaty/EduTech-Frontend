@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>EduTech - Course Details</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <header class="navbar">
+      <a href="index.html" class="logo"> Edu<span>Tech</span> </a>
+
+      <nav class="nav-links">
+        <a href="index.html"> Home </a>
+
+        <a href="courses.html" class="active"> Courses </a>
+
+        <a href="dashboard.html"> Dashboard </a>
+
+        <a href="contact.html"> Contact </a>
+      </nav>
+
+      <div class="nav-buttons">
+        <a href="login.html" class="btn-login"> Login </a>
+
+        <a href="register.html" class="btn-primary"> Register </a>
+      </div>
+    </header>
+
+    <section class="course-details">
+      <div class="course-details-image">
+        <img id="courseImage" src="" alt="Course image" />
+      </div>
+
+      <div class="course-details-content">
+        <span id="courseCategory" class="course-category"> </span>
+
+        <h1 id="courseName"></h1>
+
+        <p id="courseDescription" class="course-description"></p>
+
+        <div class="course-meta">
+          <div>
+            <strong>Level</strong>
+            <span id="courseLevel"></span>
+          </div>
+
+          <div>
+            <strong>Duration</strong>
+            <span id="courseDuration"></span>
+          </div>
+
+          <div>
+            <strong>Lessons</strong>
+            <span id="courseLessons"></span>
+          </div>
+        </div>
+
+        <h2>What You Will Learn</h2>
+
+        <ul id="courseTopics" class="course-topics"></ul>
+
+        <div class="course-action">
+          <a href="register.html" class="btn-primary"> Enroll Now </a>
+
+          <a href="courses.html" class="btn-secondary"> Back to Courses </a>
+        </div>
+      </div>
+    </section>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>

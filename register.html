@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>EduTech - Register</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <header class="navbar">
+      <a href="index.html" class="logo"> Edu<span>Tech</span> </a>
+
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="nav-buttons">
+        <a href="login.html" class="btn-login"> Login </a>
+      </div>
+    </header>
+
+    <section class="auth-section">
+      <div class="auth-container">
+        <div class="auth-header">
+          <span class="section-label"> Create Your Account </span>
+
+          <h1>Join <span>EduTech</span></h1>
+
+          <p>Create an account and start your learning journey.</p>
+        </div>
+
+        <form id="registerForm" class="auth-form">
+          <div class="form-group">
+            <label for="usernameInput"> Username </label>
+
+            <input
+              type="text"
+              id="usernameInput"
+              placeholder="Enter your username"
+            />
+
+            <small id="usernameError"></small>
+          </div>
+
+          <div class="form-group">
+            <label for="emailInput"> Email </label>
+
+            <input
+              type="email"
+              id="emailInput"
+              placeholder="Enter your email"
+            />
+
+            <small id="emailError"></small>
+          </div>
+
+          <div class="form-group">
+            <label for="passwordInput"> Password </label>
+
+            <input
+              type="password"
+              id="passwordInput"
+              placeholder="Enter your password"
+            />
+
+            <small id="passwordError"></small>
+          </div>
+
+          <div class="form-group">
+            <label for="confirmPasswordInput"> Confirm Password </label>
+
+            <input
+              type="password"
+              id="confirmPasswordInput"
+              placeholder="Confirm your password"
+            />
+
+            <small id="confirmPasswordError"></small>
+          </div>
+
+          <button type="submit" class="btn-primary auth-button">
+            Create Account
+          </button>
+
+          <p id="registerMessage" class="form-message"></p>
+
+          <p class="auth-switch">
+            Already have an account?
+            <a href="login.html">Login</a>
+          </p>
+        </form>
+      </div>
+    </section>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>

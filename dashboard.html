@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>EduTech - Dashboard</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <header class="navbar">
+      <a href="index.html" class="logo"> Edu<span>Tech</span> </a>
+
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+
+        <a href="courses.html">Courses</a>
+
+        <a href="dashboard.html" class="active"> Dashboard </a>
+
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="nav-buttons">
+        <a href="#" id="logoutButton" class="btn-login"> Logout </a>
+      </div>
+    </header>
+
+    <!-- ==================== DASHBOARD ==================== -->
+
+    <section class="dashboard">
+      <div class="container">
+        <!-- ==================== WELCOME ==================== -->
+
+        <div class="dashboard-header">
+          <span class="section-label"> Student Dashboard </span>
+
+          <h1>
+            Welcome,
+            <span id="dashboardUsername"></span>
+          </h1>
+
+          <p>Track your learning journey and manage your courses.</p>
+        </div>
+
+        <!-- ==================== STATS ==================== -->
+
+        <div class="dashboard-stats">
+          <div class="stat-card">
+            <h3>3</h3>
+
+            <p>Enrolled Courses</p>
+          </div>
+
+          <div class="stat-card">
+            <h3>12</h3>
+
+            <p>Completed Lessons</p>
+          </div>
+
+          <div class="stat-card">
+            <h3>75%</h3>
+
+            <p>Average Progress</p>
+          </div>
+        </div>
+
+        <!-- ==================== MY COURSES ==================== -->
+
+        <div class="dashboard-section">
+          <h2>My Courses</h2>
+
+          <div class="dashboard-course-list">
+            <!-- Course 1 -->
+
+            <div class="dashboard-course-card">
+              <img
+                src="images/web-development.jpg"
+                alt="Web Development Course"
+              />
+
+              <div class="dashboard-course-content">
+                <span class="course-category"> Web Development </span>
+
+                <h3>Full Web Development</h3>
+
+                <p>Progress: 80%</p>
+
+                <div class="progress-bar">
+                  <div class="progress" style="width: 80%"></div>
+                </div>
+
+                <a href="course-details.html?courseId=web" class="btn-primary">
+                  Continue Learning
+                </a>
+              </div>
+            </div>
+
+            <!-- Course 2 -->
+
+            <div class="dashboard-course-card">
+              <img src="images/python.jpg" alt="Python Programming Course" />
+
+              <div class="dashboard-course-content">
+                <span class="course-category"> Programming </span>
+
+                <h3>Python Programming</h3>
+
+                <p>Progress: 55%</p>
+
+                <div class="progress-bar">
+                  <div class="progress" style="width: 55%"></div>
+                </div>
+
+                <a
+                  href="course-details.html?courseId=python"
+                  class="btn-primary"
+                >
+                  Continue Learning
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>
