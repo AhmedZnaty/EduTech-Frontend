@@ -144,7 +144,6 @@ const courses = {
   },
 };
 
-// Check if the current page is Course Details
 if (courseId && courses[courseId]) {
   const course = courses[courseId];
 
@@ -166,10 +165,8 @@ if (courseId && courses[courseId]) {
 
   document.getElementById("courseLessons").textContent = course.lessons;
 
-  // Get the topics list
   const courseTopics = document.getElementById("courseTopics");
 
-  // Add every topic to the list
   course.topics.forEach(function (topic) {
     const listItem = document.createElement("li");
 
@@ -216,13 +213,10 @@ if (registerForm) {
 
     let isValid = true;
 
-    // Username must contain at least 3 letters or numbers
     const usernameRegex = /^[a-zA-Z0-9_]{3,20}$/;
 
-    // Basic email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    // Password must contain at least 8 characters
     const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
 
     if (!usernameRegex.test(username)) {
@@ -315,6 +309,13 @@ if (loginForm) {
 
       return;
     }
+    if (loginUsername === "admin" && loginPassword === "admin123") {
+      localStorage.setItem("isAdmin", "true");
+
+      window.location.href = "admin.html";
+
+      return;
+    }
 
     if (
       loginUsername === registeredUser.username &&
@@ -366,4 +367,245 @@ if (logoutButton) {
 
     window.location.href = "login.html";
   });
+}
+// ==================== CONTACT ====================
+
+const contactForm = document.getElementById("contactForm");
+
+if (contactForm) {
+  contactForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const contactName = document
+      .getElementById("contactNameInput")
+      .value.trim();
+
+    const contactEmail = document
+      .getElementById("contactEmailInput")
+      .value.trim();
+
+    const contactMessageText = document
+      .getElementById("contactMessageInput")
+      .value.trim();
+
+    const contactNameError = document.getElementById("contactNameError");
+    const contactEmailError = document.getElementById("contactEmailError");
+    const contactMessageError = document.getElementById("contactMessageError");
+    const contactMessage = document.getElementById("contactMessage");
+
+    contactNameError.textContent = "";
+    contactEmailError.textContent = "";
+    contactMessageError.textContent = "";
+    contactMessage.textContent = "";
+
+    let isValid = true;
+
+    const contactEmailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (contactName === "") {
+      contactNameError.textContent = "Please enter your name.";
+
+      isValid = false;
+    }
+
+    if (!contactEmailRegex.test(contactEmail)) {
+      contactEmailError.textContent = "Please enter a valid email.";
+
+      isValid = false;
+    }
+
+    if (contactMessageText.length < 10) {
+      contactMessageError.textContent =
+        "Message must contain at least 10 characters.";
+
+      isValid = false;
+    }
+
+    if (!isValid) {
+      return;
+    }
+
+    contactMessage.textContent = "Your message has been sent successfully.";
+
+    contactMessage.style.color = "#16a34a";
+
+    contactForm.reset();
+  });
+}
+// ==================== ADMIN ====================
+
+const courseForm = document.getElementById("courseForm");
+
+const adminCourseList = document.getElementById("adminCourseList");
+
+if (courseForm && adminCourseList) {
+  let adminCourses = JSON.parse(localStorage.getItem("adminCourses")) || [
+    {
+      id: 1,
+      name: "Full Web Development",
+      category: "Web Development",
+      level: "Beginner",
+      duration: "8 Weeks",
+    },
+
+    {
+      id: 2,
+      name: "Python Programming",
+      category: "Programming",
+      level: "Beginner",
+      duration: "6 Weeks",
+    },
+
+    {
+      id: 3,
+      name: "Introduction to AI",
+      category: "Artificial Intelligence",
+      level: "Intermediate",
+      duration: "10 Weeks",
+    },
+  ];
+
+  let editingCourseId = null;
+
+  function saveAdminCourses() {
+    localStorage.setItem("adminCourses", JSON.stringify(adminCourses));
+  }
+
+  function displayAdminCourses() {
+    adminCourseList.innerHTML = "";
+
+    adminCourses.forEach(function (course) {
+      const courseItem = document.createElement("div");
+
+      courseItem.className = "admin-course-item";
+
+      courseItem.innerHTML = `
+
+                <div>
+
+                    <h3>${course.name}</h3>
+
+                    <p>
+                        ${course.category}
+                        •
+                        ${course.level}
+                        •
+                        ${course.duration}
+                    </p>
+
+                </div>
+
+                <div class="admin-course-actions">
+
+                    <button
+                        class="admin-edit-button"
+                        data-id="${course.id}"
+                    >
+                        Edit
+                    </button>
+
+                    <button
+                        class="admin-delete-button"
+                        data-id="${course.id}"
+                    >
+                        Delete
+                    </button>
+
+                </div>
+
+            `;
+
+      adminCourseList.appendChild(courseItem);
+    });
+  }
+
+  courseForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const courseName = document.getElementById("courseNameInput").value.trim();
+
+    const courseCategory = document
+      .getElementById("courseCategoryInput")
+      .value.trim();
+
+    const courseLevel = document.getElementById("courseLevelInput").value;
+
+    const courseDuration = document
+      .getElementById("courseDurationInput")
+      .value.trim();
+
+    if (courseName === "" || courseCategory === "" || courseDuration === "") {
+      alert("Please fill in all fields.");
+
+      return;
+    }
+
+    if (editingCourseId !== null) {
+      const course = adminCourses.find(function (course) {
+        return course.id === editingCourseId;
+      });
+
+      course.name = courseName;
+
+      course.category = courseCategory;
+
+      course.level = courseLevel;
+
+      course.duration = courseDuration;
+
+      editingCourseId = null;
+    } else {
+      const newCourse = {
+        id: Date.now(),
+
+        name: courseName,
+
+        category: courseCategory,
+
+        level: courseLevel,
+
+        duration: courseDuration,
+      };
+
+      adminCourses.push(newCourse);
+    }
+
+    saveAdminCourses();
+
+    displayAdminCourses();
+
+    courseForm.reset();
+  });
+
+  adminCourseList.addEventListener("click", function (event) {
+    const courseId = Number(event.target.dataset.id);
+
+    if (event.target.classList.contains("admin-delete-button")) {
+      adminCourses = adminCourses.filter(function (course) {
+        return course.id !== courseId;
+      });
+
+      saveAdminCourses();
+
+      displayAdminCourses();
+    }
+
+    if (event.target.classList.contains("admin-edit-button")) {
+      const course = adminCourses.find(function (course) {
+        return course.id === courseId;
+      });
+
+      document.getElementById("courseNameInput").value = course.name;
+
+      document.getElementById("courseCategoryInput").value = course.category;
+
+      document.getElementById("courseLevelInput").value = course.level;
+
+      document.getElementById("courseDurationInput").value = course.duration;
+
+      editingCourseId = course.id;
+    }
+  });
+
+  displayAdminCourses();
 }
