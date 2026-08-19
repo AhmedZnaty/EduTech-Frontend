@@ -288,16 +288,6 @@ if (loginForm) {
     loginPasswordError.textContent = "";
     loginMessage.textContent = "";
 
-    const registeredUser = JSON.parse(localStorage.getItem("registeredUser"));
-
-    if (!registeredUser) {
-      loginMessage.textContent = "No account found. Please register first.";
-
-      loginMessage.style.color = "#dc2626";
-
-      return;
-    }
-
     if (loginUsername === "") {
       loginUsernameError.textContent = "Please enter your username.";
 
@@ -309,10 +299,22 @@ if (loginForm) {
 
       return;
     }
+
+    // Check admin login FIRST, before checking for a registered student
     if (loginUsername === "admin" && loginPassword === "admin123") {
       localStorage.setItem("isAdmin", "true");
 
       window.location.href = "admin.html";
+
+      return;
+    }
+
+    const registeredUser = JSON.parse(localStorage.getItem("registeredUser"));
+
+    if (!registeredUser) {
+      loginMessage.textContent = "No account found. Please register first.";
+
+      loginMessage.style.color = "#dc2626";
 
       return;
     }
